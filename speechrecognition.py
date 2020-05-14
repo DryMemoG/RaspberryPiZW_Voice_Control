@@ -53,14 +53,19 @@ with SR.Microphone() as source:
             arduino.write(b'1')
             arduino.close()
             #envia un 0 via serial para apagar el led en el arduino
-        elif arrayS[0]=="apagar" or arrayS[0]=="apaga":
+        elif arrayS[0]=="apagar" or arrayS[0]=="apaga" or arrayS[0]=="Apagar" or arrayS[0]=="Apaga":
             arduino=serial.Serial("COM3",9600)
             time.sleep(2)
             arduino.write(b'0')
             arduino.close()
             #abre cualquier programa de windows
         elif arrayS[0]=="Abre":
-            os.system("NOTEPAD.EXE")
+            if arrayS[1] == "notas" or arrayS[1] == "Notas":
+                os.system("NOTEPAD.EXE")
+            if arrayS[1] == "word" or arrayS[1]=="Word":
+                os.system('\"C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\WINWORD.EXE\"')
+            if arrayS[1] == "internet" or arrayS[1] == "Internet":
+                os.system('\"C:\\Program Files\\Mozilla Firefox\\firefox.exe\"')
         else:
             print("Amiguito, Habla claro.!!!")
         
